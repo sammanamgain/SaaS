@@ -25,8 +25,12 @@ SECRET_KEY = 'django-insecure-t_pw9_e-%&!w6uul*gwh8q8l5i2qr%qwzt$!(c+#ucp7z3v6lt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    '.railway.app'
+    
+]
+if DEBUG:
+    ALLOWED_HOSTS+=['127.0.0.1','localhost']
 
 # Application definition
 
@@ -37,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     #my django app
+                'visit'
 ]
 
 MIDDLEWARE = [
@@ -62,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+               
             ],
         },
     },
