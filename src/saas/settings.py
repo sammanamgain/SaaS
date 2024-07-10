@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
      #my django app
-                'visit'
+                'visit',
+                'command'
 ]
 
 MIDDLEWARE = [
@@ -91,7 +92,7 @@ DATABASES = {
 }
 
 
-DATABASE_URL=config('CONNECTION_STRING',cast=str)
+DATABASE_URL=config('CONNECTION_STRING',default=None)
 if DATABASE_URL is not None:
     DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=50,conn_health_checks=True),
@@ -132,7 +133,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+
+#static file for django
 STATIC_URL = 'static/'
+STATICFILES_BASE_DIR=BASE_DIR/"staticfiles"
+STATICFILES_BASE_DIR.mkdir(exist_ok=True,parents=True)
+
+STATICFILES_DIRS=[
+    STATICFILES_BASE_DIR
+]
+
+# serve static file from this location,like local cdn
+STATIC_ROOT = BASE_DIR/"local-cdn"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
