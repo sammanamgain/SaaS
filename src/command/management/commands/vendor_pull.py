@@ -4,7 +4,7 @@ import helpers
 
 from django.conf import settings
 
-STATICFILES_VENDOR_DIR=getattr(settings,'STATICFILES_VENDOR_DIR')
+STATICFILES_BASE_DIR=getattr(settings,'STATICFILES_BASE_DIR')
 
 
 VENDOR_STATICFILES = {
@@ -20,7 +20,7 @@ class Command(BaseCommand):
         download=[]
         self.stdout.write("Downloading vendor static files......")
         for name,url in VENDOR_STATICFILES.items():
-            dest_path=STATICFILES_VENDOR_DIR/name
+            dest_path=STATICFILES_BASE_DIR/name
             dl_success=helpers.download_to_local(url,dest_path)
             if dl_success:
                 download.append(url)
