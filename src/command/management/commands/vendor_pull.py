@@ -4,13 +4,14 @@ import helpers
 
 from django.conf import settings
 
-STATICFILES_BASE_DIR=getattr(settings,'STATICFILES_BASE_DIR')
+VENDOR_DIR=getattr(settings,'VENDOR_DIR')
 
 
 VENDOR_STATICFILES = {
 
-    "flowbite.min.css": "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css",
+   "flowbite.min.css": "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css",
     "flowbite.min.js": "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js",
+    "flowbite.min.js.map": "https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js.map"
 
 }
 
@@ -20,7 +21,7 @@ class Command(BaseCommand):
         download=[]
         self.stdout.write("Downloading vendor static files......")
         for name,url in VENDOR_STATICFILES.items():
-            dest_path=STATICFILES_BASE_DIR/name
+            dest_path=VENDOR_DIR/name
             dl_success=helpers.download_to_local(url,dest_path)
             if dl_success:
                 download.append(url)
