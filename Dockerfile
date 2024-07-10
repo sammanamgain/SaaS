@@ -46,6 +46,9 @@ COPY ./src /code
 # Install the Python project requirements
 RUN pip install -r /tmp/requirements.txt
 
+
+# ARG build time configuration
+# ENV  run time of container , enviornment
 ARG DJANGO_SECRETE
 ENV DJANGO_SECRETE=${DJANGO_SECRETE}
 

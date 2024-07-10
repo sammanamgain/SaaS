@@ -18,6 +18,16 @@ VENDOR_STATICFILES = {
 class Command(BaseCommand):
     #entry point
     def handle(self, *args: Any, **options: Any) -> None:
+        """
+        Downloads vendor static files from the specified URLs and saves them to the specified destination paths.
+        
+        Args:
+            *args (Any): Positional arguments.
+            **options (Any): Keyword arguments.
+        
+        Returns:
+            None: This function does not return anything.
+        """
         download=[]
         self.stdout.write("Downloading vendor static files......")
         for name,url in VENDOR_STATICFILES.items():
