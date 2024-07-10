@@ -40,13 +40,25 @@ COPY requirements.txt /tmp/requirements.txt
 # copy the project code into the container's working directory
 COPY ./src /code
 
+
+
+
 # Install the Python project requirements
 RUN pip install -r /tmp/requirements.txt
+
+ARG DJANGO_SECRETE
+ENV DJANGO_SECRETE=${DJANGO_SECRETE}
+
+ARG DEBUG=False
+ENV DEBUG=${DEBUG}
 
 # database isn't available during build
 # run any other commands that do not need the database
 # such as:
-# RUN python manage.py collectstatic --noinput
+RUN python manage.py vendor_pull
+RUN python manage.py collectstatic --noinput
+
+
 
 # set the Django default project name
 ARG PROJ_NAME="saas"
