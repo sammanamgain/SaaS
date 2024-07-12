@@ -62,7 +62,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      #my django app
                 'visit',
-                'command'
+                'command',
+
+      #third party apps like allauth
+          'allauth',
+    'allauth.account',
+      'allauth.socialaccount',
+          'allauth.socialaccount.providers.github',
+             'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +80,12 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
+          # Add the account middleware:
+    "allauth.account.middleware.AccountMiddleware",
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
 
 ]
 
@@ -137,6 +149,22 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+#djaango allauth
+
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
+
+SOCIALACCOUNT_PROVIDERS = {
+
+}
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
